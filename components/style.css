@@ -4,7 +4,7 @@ body {
 
 :root {
     --defaultPallet1:#ffaa00;
-    --smoothTrans:1.8s all;
+    --smoothTrans:2s all;
     --Trans: 0.3s all;
 }
 
@@ -50,7 +50,7 @@ body {
     left:0;
     content: '';
     z-index:-2;
-    background:url(/image/bgnyar.jpg) no-repeat;
+    background:url(../components/image/bgnyar.jpg) no-repeat;
     background-size:cover;
     background-position: center;
     filter:brightness(60%);
@@ -125,7 +125,7 @@ body {
 }
 #valkyrie::after {
     content: '';
-    background: url(/image/valkyrie.jpg) no-repeat;
+    background: url(../components/image/valkyrie.jpg) no-repeat;
     background-size:cover;
     position:absolute;
     padding:0;
@@ -152,7 +152,7 @@ body {
 
 /* Gameplay */
 #gameplay {
-    background:url(/image/background.jpg) no-repeat;
+    background:url(../components/image/background.jpg) no-repeat;
     background-size:cover;
     width: 100%;
     height:100%;

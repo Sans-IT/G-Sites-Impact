@@ -1,0 +1,380 @@
+body {
+    overflow-x: hidden;
+}
+
+:root {
+    --defaultPallet1:#ffaa00;
+    --smoothTrans:1.8s all;
+    --Trans: 0.3s all;
+}
+
+.default1 {
+    color:var(--defaultPallet1) !important;
+}
+
+.bgdefault1 {
+    background-color:var(--defaultPallet1) !important;
+}
+
+.bgdefault1>a:hover {
+    background-color:red;
+}
+
+/* Header */
+.floatHeader {
+    width: 100%;
+    height:100vh;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display: flex;
+}
+
+.objectSpinning {
+    margin:auto;
+    position: relative;
+    width: 50%;
+    animation:Spinning 60s infinite linear;
+    opacity: 25%;
+}
+
+#header {
+    width: 100%;
+    height: 100vh;
+}
+
+#header::after {
+    position:absolute;
+    top:0;
+    left:0;
+    content: '';
+    z-index:-2;
+    background:url(/image/bgnyar.jpg) no-repeat;
+    background-size:cover;
+    background-position: center;
+    filter:brightness(60%);
+    width: 100%;
+    height: 100vh;
+}
+
+#header::before {
+    position:absolute;
+    top:0;
+    left:0;
+    content: '';
+    width:100%;
+    height:100vh;
+    background:linear-gradient(0deg,black 0%,transparent 50%,black 100%);
+}
+
+.headerContainer {
+    z-index:20;
+}
+
+.TitleHeader {
+    font-family:oxanium,'sans-serif';
+    font-weight:bold;
+}
+
+.TitleDefault {
+    font-family:Futura Md BT,'sans-serif';
+}
+
+#header p {
+    margin:0;
+}
+
+.headerChar img:nth-child(1) {
+    top:50%;
+    left:70%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    opacity:60%;
+}
+.headerChar img:nth-child(2) {
+    top:0;
+    left:50%;
+    opacity:90%;
+}
+.headerChar img:nth-child(3) {
+    top:-30px;
+    left:100%;
+}
+
+/* Tentang */
+.deskripsi-panel img {
+    object-fit: cover;
+}
+
+.tentang-panel {
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.tentang-panel img {
+    box-shadow:0 5px 5px rgba(0,0,0,0.5);
+}
+
+/* Valkyrie */
+#valkyrie {
+    position:relative;
+    width: 100%;
+}
+#valkyrie::after {
+    content: '';
+    background: url(/image/valkyrie.jpg) no-repeat;
+    background-size:cover;
+    position:absolute;
+    padding:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    filter: brightness(40%);
+    z-index: -1;
+}
+
+.carousel-item img {
+    margin-top:50px;
+    position:relative;
+    transform:translateX(-50%);
+    top:0;
+    left:50%;
+    width: 150%;
+}
+
+.carousel-caption {
+    position:relative;
+}
+
+/* Gameplay */
+#gameplay {
+    background:url(/image/background.jpg) no-repeat;
+    background-size:cover;
+    width: 100%;
+    height:100%;
+}
+
+/* Gallery */
+#gallery {
+    width: 100%;
+    position:relative;
+}
+
+.gallery {
+    width: 100%;
+    position:absolute;
+    transform:translate(-50%,-50%);
+    top:50%;
+    left:50%;
+}
+
+.gallery-container {
+    width: 100%;
+    margin:auto;
+    position:absolute;
+}
+
+.gallery-item {
+    margin:0 15%;
+    height:auto;
+    width: 60%;
+    position:absolute;
+    transition:all .25s ease-in-out;
+}       
+
+.gallery-item-1,
+.gallery-item-2,
+.gallery-item-3,
+.gallery-item-4,
+.gallery-item-5
+{
+    transform:translateX(-50%);
+}
+
+.gallery-item-1,.gallery-item-5 {
+    filter:brightness(20%);
+    z-index:-1;
+}
+.gallery-item-2,.gallery-item-4 {
+    filter:brightness(50%);
+    z-index:1;
+}
+.gallery-item-3 {
+    filter:brightness(100%);
+    z-index:2;
+}
+
+.gallery-item-1 {
+    left:15%;
+}
+.gallery-item-2 {
+    left:20%;
+}
+.gallery-item-3 {
+    left:35%;
+    width: 80%;
+    box-shadow: 0 0 50px white;
+}
+.gallery-item-4 {
+    left:50%;
+}
+.gallery-item-5 {
+    left:55%;
+}
+
+.gallery-controls {
+    position:absolute;
+    top:50%;
+    z-index:5;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    transform:translateY(-50%);
+    color:#ffd000;
+    width: 100%;
+}
+
+.gallery-controls button {
+    background-color:transparent;
+    border:0;
+    cursor:pointer;
+    position:relative;
+    display:flex;
+}
+
+.gallery-controls-previous::before {
+    content:'<';
+    color:#ffd000;
+    width:50%;
+    font-size:4rem;
+    text-shadow:0 0 20px #ffd000;
+    transition:all var(--smoothTrans);
+}
+
+.gallery-controls-next::before {
+    content:'>';
+    color:#ffd000;
+    width:50%;
+    font-size:4rem;
+    text-shadow:0 0 20px #ffd000;
+    transition:all var(--smoothTrans);
+}
+
+.gallery-controls-previous:hover::before {
+    padding-right:30px;
+}
+
+.gallery-controls-next:hover::before{
+    padding-left:30px;
+}
+
+/* Footer */
+.footer-medsos {
+    display:flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+
+.footer-medsos img{
+    width: 35px;
+    position:relative;
+    transition: all 0.3s;
+    -webkit-box-reflect: below 20px linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+.footer-medsos img:hover{
+    scale:120%;
+    /* filter:sepia(90%) saturate(3000%) hue-rotate(160deg) brightness(80%) contrast(150%);   */
+}
+
+/* Other */
+.custom-tooltip-light {
+--bs-tooltip-bg: var(--bs-light);
+--bs-tooltip-color:black;
+}
+.custom-tooltip-dark {
+--bs-tooltip-bg: var(--bs-dark);
+--bs-tooltip-color:white;
+}
+
+.reveal-r {
+    position:relative;
+    transform:translateX(100px);
+    opacity:0;
+    transition:var(--smoothTrans);
+} .reveal-l {
+    position:relative;
+    transform:translateX(-100px);
+    opacity:0;
+    transition:var(--smoothTrans);
+} .reveal {
+    position:relative;
+    transform:translateY(100px);
+    opacity:0;
+    transition:var(--smoothTrans);
+}
+.reveal.active,
+.reveal-l.active,
+.reveal-r.active {
+    transform:translateY(0);
+    transform:translateX(0);
+    opacity:1;
+}
+
+@keyframes Spinning {
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}
+
+@media (min-width:992px) {
+    .valkyrie-deskripsi {
+        border-left:5px solid var(--defaultPallet1);
+    }
+
+    #gallery {
+        height:100vh;
+    }
+    .gameplay-img {
+        transform:perspective(2000px) rotateY(15deg) rotateX(5deg);
+        transition:1s ease;
+    } .gameplay-img:hover {
+        transform:rotate(0deg);
+    }
+}
+
+@media (max-width:992px){
+    .objectSpinning {
+        width: 200%;
+    }
+
+    .tentang-panel img{
+        margin-top:30px;
+    }
+
+    .deskripsi-panel {
+        flex-direction:column;
+    } .deskripsi-panel img {width: 100%;}
+    .deskripsi-game {
+        box-shadow:0 5px 8px rgba(0,0,0,0.1);
+    }
+
+    .carousel-inner {
+        border-bottom:4px solid var(--defaultPallet1);
+    }
+
+    #gallery {
+        height:50vh;
+    }
+    iframe {
+        height:315px;
+        width: 100%;
+    }
+}

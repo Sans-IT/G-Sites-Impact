@@ -1,605 +1,362 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SNEZNAX</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-
-    <!-- <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --smoothTrans:2.5s all;
-            --Trans: 0.3s all;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x:hidden;
-        } .header-title {
-            text-shadow:0 0 5px white;
-        }.sesi {
-            font-size:3em;
-            font-weight: bold;
-        }
-        .carousel-header img {
-            object-fit: cover;
-            height: 100vh;
-            filter:brightness(30%);
-        } 
-
-        .download img { 
-            transition:var(--Trans);
-        }.download img:hover {scale:110%;}
-
-        #tentang .carousel-inner img {
-            animation : floatingUp 2.5s infinite alternate ease;
-        } 
-
-        @keyframes floatingUp {
-            0% {
-                transform:translateY(30px);
-            } 100% {
-                transform:translateY(0px);
-            }
-        }
-
-        #karakter {
-                background-image:url(./image/background.jpg);
-                background-size:cover;
-                background-repeat:no-repeat;
-                background-position:center;
-            }
-
-        #karakter img {
-            margin-top:50px;
-            position:relative;
-            transform:translateX(-50%);
-            left:50%;
-            width:100% !important;
-        }
-
-        #gallery {
-            width: 100%;
-            position:relative;
-        }
-
-        .gallery {
-            width: 100%;
-            position:absolute;
-            transform:translate(-50%,-50%);
-            top:50%;
-            left:50%;
-        }
-
-        .gallery-container {
-            width: 100%;
-            margin:auto;
-            position:absolute;
-        }
-
-        .gallery-item {
-            margin:0 15%;
-            height:auto;
-            width: 60%;
-            position:absolute;
-            transition:all .25s ease-in-out;
-        }       
-
-        .gallery-item-1,
-        .gallery-item-2,
-        .gallery-item-3,
-        .gallery-item-4,
-        .gallery-item-5
-        {
-            transform:translateX(-50%);
-        }
-
-        .gallery-item-1,.gallery-item-5 {
-            filter:brightness(20%);
-            z-index:-1;
-        }
-        .gallery-item-2,.gallery-item-4 {
-            filter:brightness(50%);
-            z-index:1;
-        }
-        .gallery-item-3 {
-            filter:brightness(100%);
-            z-index:2;
-        }
-
-        .gallery-item-1 {
-            left:15%;
-        }
-        .gallery-item-2 {
-            left:20%;
-        }
-        .gallery-item-3 {
-            left:35%;
-            width: 80%;
-            box-shadow: 0 0 50px white;
-        }
-        .gallery-item-4 {
-            left:50%;
-        }
-        .gallery-item-5 {
-            left:55%;
-        }
-
-        .gallery-controls {
-            position:absolute;
-            top:50%;
-            z-index:5;
-            display:flex;
-            justify-content:space-between;
-            align-items: center;
-            transform:translateY(-50%);
-            color:#ffd000;
-            width: 100%;
-        }
-
-        .gallery-controls button {
-            background-color:transparent;
-            border:0;
-            cursor:pointer;
-            position:relative;
-            display:flex;
-        }
-
-        .gallery-controls-previous::before {
-            content:'<';
-            color:#ffd000;
-            width:50%;
-            font-size:4rem;
-            text-shadow:0 0 20px #ffd000;
-            transition:all var(--smoothTrans);
-        }
-
-        .gallery-controls-next::before {
-            content:'>';
-            color:#ffd000;
-            width:50%;
-            font-size:4rem;
-            text-shadow:0 0 20px #ffd000;
-            transition:all var(--smoothTrans);
-        }
-
-        .gallery-controls-previous:hover::before {
-            padding-right:30px;
-        }
-
-        .gallery-controls-next:hover::before{
-            padding-left:30px;
-        }
-
-        .footer-medsos {
-            display:flex;
-            justify-content:space-evenly;
-            align-items: center;
-        }
-
-        .footer-medsos img{
-            width: 35px;
-            position:relative;
-            transition: all 0.3s;
-            -webkit-box-reflect: below 20px linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 100%);
-        }
-
-        .footer-medsos img:hover{
-            scale:120%;
-            /* filter:sepia(90%) saturate(3000%) hue-rotate(160deg) brightness(80%) contrast(150%);   */
-        }
-
-        /* Other */
-        .custom-tooltip-light {
-        --bs-tooltip-bg: var(--bs-light);
-        --bs-tooltip-color:black;
-        }
-        .custom-tooltip-dark {
-        --bs-tooltip-bg: var(--bs-dark);
-        --bs-tooltip-color:white;
-        }
-        
-        .reveal-r {
-            position:relative;
-            transform:translateX(100px);
-            opacity:0;
-            transition:var(--smoothTrans);
-        } .reveal-l {
-            position:relative;
-            transform:translateX(-100px);
-            opacity:0;
-            transition:var(--smoothTrans);
-        } .reveal {
-            position:relative;
-            transform:translateY(100px);
-            opacity:0;
-            transition:var(--smoothTrans);
-        }
-        .reveal.active,
-        .reveal-l.active,
-        .reveal-r.active {
-            transform:translateY(0);
-            transform:translateX(0);
-            opacity:1;
-        }
-
-        @media (min-width: 992px) { 
-            #gallery {
-                height:100vh;
-            }
-            .gameplay-img {
-                transform:perspective(2000px) rotateY(15deg) rotateX(5deg);
-                transition:1s ease;
-            } .gameplay-img:hover {
-                transform:rotate(0deg);
-            }
-        }
-
-        @media (max-width: 992px) { 
-            #karakter img {
-                position:relative;
-                transform:translateX(-49%);
-                left:50%;
-                width:200% !important;
-            }
-            #gallery {
-                height:50vh;
-            }
-            iframe {
-                height:315px;
-                width: 100%;
-            }
-         }
-    </style>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honkai Impact 3</title>
+    <link rel="stylesheet" href="./components/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css"> -->
+</head>
+<body>
+    <div class="floatHeader overflow-hidden">
+        <img src="./image/object.png" alt="" class="objectSpinning">
+    </div>
 
     <!-- Header -->
-    <div class="container position-absolute text-white translate-middle start-50 top-50 text-center" style="z-index:1;">
-        <div class="row header-title">
-            <h1 class="display-2 fw-bold">HONKAI IMPACT 3</h1>
-            <h1>PLAY FOR FUN</h1>
-            <p class="fs-4">JELAJAHI MMORPG DUNIA BERSAMA<br>
-                DOWNLOAD DI PC & MOBILE SEKARANG</p>
-        </div>
-        <div class="row d-flex justify-content-evenly w-50 m-auto download">
-            <div class="col-lg-4 mt-2">
-                <a href="https://itunes.apple.com/app/id1336342304"><img src="./image/apple.png" alt=""></a>
-                <!-- https://lh3.google.com/u/0/d/1tgy2Vix4mtwEeeDUuRpzhlB3dc20tGwu=w1920-h902-iv1 -->
+    <div class="container-fluid d-flex justify-content-evenly align-items-center overflow-hidden" id="header">
+        <div class="container row w-100">
+            <div class="col-lg-6 text-white headerContainer">
+                <p><span class="default1 fs-4 fw-bold TitleHeader">PLAY FOR FUN</span></p>
+                <h1 class="display-1 fw-bold TitleHeader">Honkai <span class="default1">Impact 3</span></h1>
+                <p class="fs-5 fw-semibold">Jelajahi MMORPG dunia bersama <br>Download di PC & Mobile sekarang</p>
+                <a class="btn bgdefault1 fw-bold px-4 py-2 mt-4">SELENGKAPNYA</a>
             </div>
-            <div class="col-lg-4 mt-2">
-                <a href="https://sg-public-api.hoyoverse.com/event/download_porter/link/bh3_os/pcglobal/default"><img src="./image/window.png" alt=""></a>
-                <!-- https://lh3.google.com/u/0/d/1O0-X--q4TXikqGz_GkuwuRJFznIB7H_T=w1920-h902-iv1 -->
-            </div>
-            <div class="col-lg-4 mt-2">
-                <a href="https://play.google.com/store/apps/details?id=com.miHoYo.bh3global"><img src="./image/gplaystore.png" alt=""></a>
-                <!-- https://lh3.google.com/u/0/d/1SARVqIjns9x3kM5Dlsyu7CCiThCUrDe4=w1920-h902-iv1 -->
+            <div class="col-lg-6 text-white d-lg-block d-none position-relative headerChar">
+                <img src="./image/character/raiden mei.png" alt="" class="position-absolute translate-middle">
+                <img src="./image/character/elysia.png" alt="" class="position-absolute translate-middle-x">
+                <img src="./image/character/kiana kaslana.png" alt="" class="position-absolute translate-middle-x">
             </div>
         </div>
     </div>
-    <!-- End Header -->    
-
-    <!-- Carousel -->
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner carousel-header">
-          <div class="carousel-item active" data-bs-interval="5000">
-              <img src="./image/honkai1.gif" class="d-block w-100" alt="..."> 
-              <!-- https://lh3.google.com/u/0/d/1f5Pt7GO8IsBWPTjQm4VDDHLE4nFT-4QX=w1920-h902-iv1 -->
-          </div>
-          <div class="carousel-item" data-bs-interval="5000">
-            <img src="./image/honkai2.gif" class="d-block w-100" alt="...">
-            <!-- https://lh3.google.com/u/0/d/1c8TxxQm5VScYBP3m_SpOMBHC5k6zQ0o5=w958-h870-iv1 -->
-          </div>
-          <div class="carousel-item" data-bs-interval="5000">
-            <img src="./image/honkai3.gif" class="d-block w-100" alt="...">
-            <!-- https://lh3.google.com/u/0/d/1wrTIXfp_GHDAIMTeuObnb86Yz_vd4AgX=w2000-h2876-iv1 -->
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <!-- End Carousel -->
+    <!-- End Header -->
 
     <!-- Tentang -->
-    <div class="container-fluid position-relative py-5 bg-dark" id="tentang">
-    <div class="container">
-        <div class="row reveal">
-            <div class="col text-center text-white">
-                <h1 class="sesi">TENTANG</h1>
+    <div class="container-fluid bg-light py-5" id="tentang-game">
+        <div class="container">
+            <div class="row reveal">
+                <div class="col-12 text-center">
+                    <h1 class="TitleDefault fw-semibold">TENTANG <span class="default1">GAME</span></h1>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <p class="TitleDefault fs-5">Honkai Impact 3rd adalah game mobile role-playing aksi 3D gratis yang dikembangkan oleh miHoYo. 
+                        Ini adalah angsuran ketiga dalam Seri Honkai dan kelanjutan dari Houkai Gakuen, menggunakan 
+                        banyak karakter yang sama dari judul sebelumnya, dengan cerita baru yang terpisah.</p>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <img src="./image/line.png" alt="">
+                </div>
             </div>
-        </div>
-        <div class="row py-5">
-            <div class="col-lg-6 text-center reveal-l">
-                <div id="carouselExampleFade" class="carousel slide carousel-fade d-flex justify-content-center" data-bs-ride="carousel">
-                    <div class="carousel-inner overflow-visible">
-                        <div class="carousel-item active" data-bs-interval="8000">
-                        <img src="./image/kianagod.png" class="m-0" alt="..." width="60%">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="8000">
-                        <img src="./image/tentang.png" class="m-0" alt="..." width="60%">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="8000">
-                        <img src="./image/bronya.png" class="m-0" alt="..." width="60%">
+            <div class="row py-5">
+                <div class="col-lg-8 bg-white p-5 d-flex shadow deskripsi-panel reveal-l">
+                    <img src="./image/honkai.png" alt="" width="40%">
+                    <div class="col12">
+                        <h1 class="bgdefault1 TitleDefault p-2 px-4 fw-semibold">Honkai <span class="text-white">Impact 3</span></h1>
+                        <div class="p-4 deskripsi-game">
+                            <p class="fw-bold">Kategori :<span class="fw-normal">RPG, Open World, Shooter</span></p>
+                            <p class="fw-bold">Mode :<span class="fw-normal">Singleplayer, Multiplayer</span></p>
+                            <p class="fw-bold">Device :<span class="fw-normal">Mobile & PC</span></p>
+                            <a class="btn bgdefault1 fw-bold px-4 py-2 mt-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">DOWNLOAD <i class="bi bi-download"></i></a>
                         </div>
                     </div>
-                    </div>
-            </div>
-            <div class="col-lg-6 text-white reveal-r mt-5 mt-lg-0">
-                <p>Honkai Impact 3rd adalah permainan peran aksi 3D gratis (awalnya eksklusif untuk seluler) yang dikembangkan dan diterbitkan oleh miHoYo , dan kemudian porting ke Microsoft Windows . Ini adalah penerus spiritual Houkai Gakuen 2 , menggunakan banyak karakter dari judul sebelumnya dalam cerita terpisah. Gim ini terkenal karena menggabungkan berbagai genre, mulai dari hack and slash dan simulasi sosial , hingga elemen neraka peluru ,platforming , tembak mereka dan dungeon merangkak di beberapa mode tunggal dan multipemain. Ini fitur mekanik gacha . Selain permainan, alur cerita Honkai Impact 3rd mencakup beberapa media tambahan termasuk serial anime , beberapa seri manhua , dan video promosi. </p>
-                <img src="./image/tentangImg.png" width="80%">
-                <a href="" class="btn btn-primary mt-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-light" data-bs-title="Lihat halaman Tentang Game lebih Detail">Lihat Tentang selengkapnya</a>                                        
-                </p>
+                </div>
+                <div class="col-lg-4 tentang-panel p-0 mt-lg-0 mt-5 reveal-r">
+                    <img src="./image/Story.png" alt="" width="80%">
+                    <img src="./image/Gacha.png" alt="" width="80%">
+                    <img src="./image/Shooting.png" alt="" width="80%">
+                </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- End Tentang -->
 
-    <!-- Karakter -->
-    <div class="container-fluid py-5" id="karakter">
-        <div class="container">
+    <!-- Modal Download -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Download Devices</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <div class="row w-100 d-flex justify-content-evenly">
+                        <div class="col-4">
+                            <a href="https://sg-public-api.hoyoverse.com/event/download_porter/link/bh3_os/pcglobal/default"><img src="./image/window.png" width="99%"></a>
+                        </div>
+                        <div class="col-4">
+                            <a href="https://itunes.apple.com/app/id1336342304"><img src="./image/apple.png" width="99%"></a>
+                        </div>
+                        <div class="col-4">
+                            <a href="https://play.google.com/store/apps/details?id=com.miHoYo.bh3global"><img src="./image/gplaystore.png" width="99%"></a>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Modal Download -->
+
+    <!-- Valkyrie -->
+    <div class="container-fluid" id="valkyrie">
+        <div class="container text-white py-5">
             <div class="row reveal">
-                <div class="col-12 text-center text-dark">
-                    <h1 class="sesi">Valkyrie</h1>
+                <div class="col-12">
+                    <h1 class="TitleDefault fw-semibold text-center">VALKYRIE</h1>
                 </div>
             </div>
-            <div class="row d-flex">
-                <div class="col-lg-12 pt-3">
-                    <div id="carouselExampleIndicators" class="carousel carousel-dark carousel-fade border-bottom border-5 border-primary reveal">
+            <div class="row mt-4">
+                <div class="col-lg-6 reveal-l">
+                    <div id="carouselExampleIndicators" class="carousel carousel-fade position-relative" style="height: 100%;">
                         <div class="carousel-inner overflow-visible">
                             <div class="carousel-item active">
                             <div class="carousel-caption top-0">
-                                <h2>Kiana Kaslana</h2>
+                                <h4>Kiana Kaslana</h4>
                             </div>
-                            <img src="./image/character/kiana kaslana.png" class="" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <div class="carousel-caption top-0">
-                                    <h2>Bronya Zaychick</h2>
-                                </div>
-                            <img src="./image/character/bronya zaychick.png" class="w-100" alt="...">
+                            <img src="./image/character/kiana kaslana.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Raiden Mei</h2>
+                                    <h4>Bronya Zaychick</h4>
                                 </div>
-                            <img src="./image/character/raiden mei.png" class="w-100" alt="...">
+                            <img src="./image/character/bronya zaychick.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Aponia</h2>
+                                    <h4>Raiden Mei</h4>
                                 </div>
-                            <img src="./image/character/aponia.png" class="w-100" alt="...">
+                            <img src="./image/character/raiden mei.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Carole pepper</h2>
+                                    <h4>Aponia</h4>
                                 </div>
-                            <img src="./image/character/carole pepper.png" class="w-100" alt="...">
+                            <img src="./image/character/aponia.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Durandal</h2>
+                                    <h4>Carole pepper</h4>
                                 </div>
-                            <img src="./image/character/durandal.png" class="w-100" alt="...">
+                            <img src="./image/character/carole pepper.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Eden</h2>
+                                    <h4>Durandal</h4>
                                 </div>
-                            <img src="./image/character/eden.png" class="w-100" alt="...">
+                            <img src="./image/character/durandal.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Elysia</h2>
+                                    <h4>Eden</h4>
                                 </div>
-                            <img src="./image/character/elysia.png" class="w-100" alt="...">
+                            <img src="./image/character/eden.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Fischl</h2>
+                                    <h4>Elysia</h4>
                                 </div>
-                            <img src="./image/character/fischl.png" class="w-100" alt="...">
+                            <img src="./image/character/elysia.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Fu Hua</h2>
+                                    <h4>Fischl</h4>
                                 </div>
-                            <img src="./image/character/fu hua.png" class="w-100" alt="...">
+                            <img src="./image/character/fischl.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Griseo</h2>
+                                    <h4>Fu Hua</h4>
                                 </div>
-                            <img src="./image/character/griseo.png" class="w-100" alt="...">
+                            <img src="./image/character/fu hua.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Li Sushang</h2>
+                                    <h4>Griseo</h4>
                                 </div>
-                            <img src="./image/character/li sushang.png" class="w-100" alt="...">
+                            <img src="./image/character/griseo.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Liliya Olenyeva</h2>
+                                    <h4>Li Sushang</h4>
                                 </div>
-                            <img src="./image/character/liliya olenyeva.png" class="w-100" alt="...">
+                            <img src="./image/character/li sushang.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Kiana Kaslana</h2>
+                                    <h4>Liliya Olenyeva</h4>
                                 </div>
-                            <img src="./image/character/mobius.png" class="w-100" alt="...">
+                            <img src="./image/character/liliya olenyeva.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Murata Himeko</h2>
+                                    <h4>Moebius</h4>
                                 </div>
-                            <img src="./image/character/murata himeko.png" class="w-100" alt="...">
+                            <img src="./image/character/mobius.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Pardofelis</h2>
+                                    <h4>Murata Himeko</h4>
                                 </div>
-                            <img src="./image/character/pardofelis.png" class="w-100" alt="...">
+                            <img src="./image/character/murata himeko.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Rita Rossweisse</h2>
+                                    <h4>Pardofelis</h4>
                                 </div>
-                            <img src="./image/character/rita rossweisse.png" class="w-100" alt="...">
+                            <img src="./image/character/pardofelis.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Seele Vollerei</h2>
+                                    <h4>Rita Rossweisse</h4>
                                 </div>
-                            <img src="./image/character/seele vollerei.png" class="w-100" alt="...">
+                            <img src="./image/character/rita rossweisse.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Theresa Apocalypse</h2>
+                                    <h4>Seele Vollerei</h4>
                                 </div>
-                            <img src="./image/character/theresa apocalypse.png" class="w-100" alt="...">
+                            <img src="./image/character/seele vollerei.png"  alt="...">
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-caption top-0">
-                                    <h2>Vill-v</h2>
+                                    <h4>Theresa Apocalypse</h4>
                                 </div>
-                            <img src="./image/character/vill-v.png" class="w-100" alt="...">
+                            <img src="./image/character/theresa apocalypse.png"  alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-caption top-0">
+                                    <h4>Vill-v</h4>
+                                </div>
+                            <img src="./image/character/vill-v.png"  alt="...">
                             </div>
                         </div>
-                        <button class="carousel-control-prev text-dark" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-prev-icon d-none d-lg-block" aria-hidden="true"></span>
                             <span>Previous</span>
                         </button>
-                        <button class="carousel-control-next text-dark" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                             <span>Next</span>
+                            <span class="carousel-control-next-icon d-none d-lg-block" aria-hidden="true"></span>
                         </button>
-                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-12 pt-5 reveal">
-                    <p class="border-start">Valkyrie adalah prajurit wanita kuat dari Schicksal yang memiliki ketahanan Honkai yang tinggi dan yang memiliki stigmata alami atau buatan . Karena paparan konstan terhadap energi Honkai yang mudah menguap dan Binatang Honkai, banyak Valkyrie berisiko kehilangan nyawa mereka tidak hanya dalam pertempuran tetapi karena kemungkinan kaskade Honkai juga, yang merupakan fenomena ketika manusia dengan kemampuan beradaptasi ringan dirusak oleh Honkai dan berubah menjadi zombie, tanpa berpikir berusaha untuk menghancurkan umat manusia.</p>
-                    <div class="w-100 mt-5">
-                        <a href="" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-dark" data-bs-title="Lihat halaman Karakter Valkyrie lebih Detail">Lihat Karakter Selengkapnya</a>
+                <div class="col-lg-6 pt-4 reveal-r">
+                    <p class="fs-5 valkyrie-deskripsi ps-3">Valkyrie adalah prajurit wanita kuat dari Schicksal yang memiliki ketahanan Honkai yang tinggi dan yang memiliki stigmata alami atau buatan . Karena paparan konstan terhadap energi Honkai yang mudah menguap dan Binatang Honkai, banyak Valkyrie berisiko kehilangan nyawa mereka tidak hanya dalam pertempuran tetapi karena kemungkinan kaskade Honkai juga, yang merupakan fenomena ketika manusia dengan kemampuan beradaptasi ringan dirusak oleh Honkai dan berubah menjadi zombie, tanpa berpikir berusaha untuk menghancurkan umat manusia.</p>
+                    <div class="w-100 mt-4">
+                        <a href="" class="btn bgdefault1 fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-dark" data-bs-title="Lihat halaman Karakter Valkyrie lebih Detail">Lihat Karakter Selengkapnya</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Karakter -->
+    <!-- End Valkyrie -->
 
-      <!-- Gameplay -->
-    <div class="container-fluid py-5 bg-dark" id="gameplay">
-      <div class="container text-white">
-        <div class="row">
-            <div class="col-12 py-5">
-                <div class="col-12 text-center reveal justify-content-evenly align=items-center d-flex m-auto">
-                    <img src="https://lh3.google.com/u/0/d/1W5_zCyoTdsi_gE83waRAXpgyKOAeTvqF=w1920-h902-iv1" alt="" width="30%" height="30%" class="d-none d-lg-block" style="filter: invert(1);">
-                    <h1 class="sesi">GAMEPLAY</h1>
-                    <img src="https://lh3.google.com/u/0/d/1W5_zCyoTdsi_gE83waRAXpgyKOAeTvqF=w1920-h902-iv1" alt="" width="30%" height="30%" class="d-none d-lg-block" style="filter: invert(1);">
+    <!-- Gameplay -->
+    <div class="container-fluid py-5" id="gameplay">
+        <div class="container text-dark">
+            <div class="row">
+                <div class="col-12 py-5">
+                    <div class="col-12 text-center reveal justify-content-evenly align=items-center d-flex m-auto">
+                        <img src="./image/line.png" alt="" width="30%" height="30%" class="d-none d-lg-block" style="filter: invert(0);">
+                        <h1 class="TitleDefault fw-semibold text-center">GAMEPLAY</h1>
+                        <img src="./image/line.png" alt="" width="30%" height="30%" class="d-none d-lg-block" style="filter: invert(0);">
+                    </div>
+                </div>
+                <div class="col-12 text-center reveal">            
+                    <iframe class="shadow" width="100%" height="700" src="https://www.youtube.com/embed/videoseries?list=PLLX1bpH-W3ZCqiNmnoGrCefYy-lyUX3O3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="col-12 text-center reveal">            
-                <iframe style="box-shadow:0 0 30px rgba(255,255,255,0.2);" width="100%" height="700" src="https://www.youtube.com/embed/videoseries?list=PLLX1bpH-W3ZCqiNmnoGrCefYy-lyUX3O3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="row py-5">
-            <!-- 1 -->
-            <div class="col-lg-6 reveal-l mb-5">
-                <p>Honkai Impact 3rd memiliki pemain yang mengontrol tim hingga tiga karakter, yang dikenal sebagai " Valkyrie ", dalam pertempuran waktu nyata melawan berbagai musuh. Selama pertempuran, pemain dapat dengan bebas memindahkan karakter mereka di sekitar medan perang dan beralih di antara tiga Valkyrie yang mereka gunakan secara real-time. Setiap Valkyrie memiliki serangan, penghindaran, sakelar, dan keterampilan pamungkas yang unik, serta tipe. Tiga jenis Mech, Biologic, dan Psychic didasarkan pada gunting batu-kertas-sistem berbasis di mana tipe diuntungkan dan diuntungkan tergantung pada tipe musuh dan tipe mereka sendiri. Selain itu, dua jenis Quantum dan Imajiner ada dan diuntungkan satu sama lain, netral terhadap ketiga jenis di atas, dan diuntungkan atas diri mereka sendiri. Statistik dan keterampilan Valkyrie dapat diubah dengan berbagai senjata dan peralatan, yang dapat ditingkatkan dengan menggunakan sumber daya dalam game. Peralatan baru (dikenal sebagai "Stigmata"), senjata, dan Valkyrie dapat diperoleh baik melalui kerajinan dalam game atau melalui sistem gacha . 
-                </p>
-            </div>
-            <div class="col-lg-6 reveal-r text-center d-none d-lg-block">
-                <img src="https://lh3.google.com/u/0/d/14VKDiL78KrmDqF4md7gbhIjNWV1iVtjm=w1920-h902-iv1" alt="HonkaiLogo" width="90%">
-            </div>
-
-            <!-- 2 -->
-            <div class="col-lg-6 reveal-l text-center mb-5">
-                <img src="https://lh3.google.com/u/0/d/1UnYamlwgSEcxs5AqiBlyXfFkoN2aUacL=w1920-h902-iv1" alt="Honkaimap" width="90%" class=" gameplay-img">
-            </div>
-            <div class="col-lg-6 reveal-r">
-                <p>Mode permainan single-player termasuk kampanye "Story", terdiri dari tahapan yang diselingi oleh dialog dalam cutscene dan video gerak penuh (FMV), "Chronicles", serangkaian cerita sampingan singkat yang mengeksplorasi backstories Valkyrie atau aspek lain dari dunia, dan "Dunia Terbuka", memungkinkan eksplorasi beberapa bidang terbuka besar untuk mengumpulkan materi dan menyelesaikan berbagai tugas tantangan, ditambah dengan alur cerita mereka sendiri.
-                </p>
-                <p>Gim ini menampilkan berbagai mode kooperatif dan kompetitif multipemain seperti "Co-op Raid", di mana pemain bekerja sama untuk maju melalui beberapa tahap dan mendapatkan senjata legendaris dan hadiah terkait; "Memorial Arena", di mana pemain bersaing melawan satu set bos untuk mendapatkan skor tertinggi di seluruh server; dan "Abyss", di mana pemain berusaha untuk maju sejauh mungkin melalui tantangan pertempuran untuk bersaing mendapatkan skor tinggi melawan orang lain dalam kelompok kecil. Pemain dapat bergabung dengan grup pemain lain, yang disebut "Armadas", yang memungkinkan lebih banyak peluang untuk acara dan hadiah. Armada mengizinkan permintaan material dan sumber daya secara terbatas dari pemain lain di Armada.
-                </p>
-            </div>
-
-            <!-- 3 -->
-            <div class="col-lg-6 reveal-l mt-5">
-                <p>Di luar pertempuran, Honkai Impact 3rd memungkinkan pemain untuk berinteraksi dengan karakter Valkyrie dan Stigmata melalui mode "Asrama". Setelah menyelesaikan tugas khusus karakter, karakter yang berbeda mungkin dapat pindah ke asrama, di mana informasi karakter baru dan dialog antara karakter tersebut dapat dilihat. Pemain dapat membuat berbagai perabot dan mendesain tata letak kamar asrama untuk meningkatkan "kenyamanan" Valkyrie dan Stigmata di dalamnya. Tingkat kenyamanan yang lebih besar memungkinkan pemain untuk meningkatkan batas asrama mereka untuk dekorasi yang lebih rumit. Pemain dapat mengunjungi dan melihat tata letak asrama yang didekorasi satu sama lain.
-                </p>
-            </div>
-            <div class="col-lg-6 reveal-r mt-5">
-                <img src="https://lh3.google.com/u/0/d/1Jj0I9MLBP94wX-PsxW3B6MYBnVsESV03=w1920-h902-iv1" alt="co-op" width="100%">
-            </div>
-
-            <!-- Bottom -->
-            <div class="row mt-5 reveal">
-                <div class="col">
-                    <p>Mekanik gameplay sekunder mencakup berbagai minigame yang menggabungkan elemen bullet hell , platforming , dan shoot 'em up yang memungkinkan pemain mengumpulkan berbagai bahan kerajinan dan pengalaman. Acara musiman dengan waktu terbatas juga dapat mencakup gaya permainan seperti dungeon crawling dan battle royale yang biasanya tidak terlihat dalam mode permainan utama.
+            <div class="row py-5">
+                <!-- 1 -->
+                <div class="col-lg-6 reveal-l mb-5">
+                    <p>Honkai Impact 3rd memiliki pemain yang mengontrol tim hingga tiga karakter, yang dikenal sebagai " Valkyrie ", dalam pertempuran waktu nyata melawan berbagai musuh. Selama pertempuran, pemain dapat dengan bebas memindahkan karakter mereka di sekitar medan perang dan beralih di antara tiga Valkyrie yang mereka gunakan secara real-time. Setiap Valkyrie memiliki serangan, penghindaran, sakelar, dan keterampilan pamungkas yang unik, serta tipe. Tiga jenis Mech, Biologic, dan Psychic didasarkan pada gunting batu-kertas-sistem berbasis di mana tipe diuntungkan dan diuntungkan tergantung pada tipe musuh dan tipe mereka sendiri. Selain itu, dua jenis Quantum dan Imajiner ada dan diuntungkan satu sama lain, netral terhadap ketiga jenis di atas, dan diuntungkan atas diri mereka sendiri. Statistik dan keterampilan Valkyrie dapat diubah dengan berbagai senjata dan peralatan, yang dapat ditingkatkan dengan menggunakan sumber daya dalam game. Peralatan baru (dikenal sebagai "Stigmata"), senjata, dan Valkyrie dapat diperoleh baik melalui kerajinan dalam game atau melalui sistem gacha . 
                     </p>
-                    <div class="w-100 text-center mt-5">
-                        <a href="" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-light" data-bs-title="Lihat halaman Gameplay Honkai lebih Detail">Lihat Gameplay Selengkapnya</a>
+                </div>
+                <div class="col-lg-6 reveal-r text-center d-none d-lg-block">
+                    <img src="./image/honkaiLogo.png" alt="HonkaiLogo" width="90%">
+                </div>
+    
+                <!-- 2 -->
+                <div class="col-lg-6 reveal-l text-center mb-5">
+                    <img src="./image/schicksalMap.png" alt="Honkaimap" width="90%" class=" gameplay-img">
+                </div>
+                <div class="col-lg-6 reveal-r">
+                    <p>Mode permainan single-player termasuk kampanye "Story", terdiri dari tahapan yang diselingi oleh dialog dalam cutscene dan video gerak penuh (FMV), "Chronicles", serangkaian cerita sampingan singkat yang mengeksplorasi backstories Valkyrie atau aspek lain dari dunia, dan "Dunia Terbuka", memungkinkan eksplorasi beberapa bidang terbuka besar untuk mengumpulkan materi dan menyelesaikan berbagai tugas tantangan, ditambah dengan alur cerita mereka sendiri.
+                    </p>
+                    <p>Gim ini menampilkan berbagai mode kooperatif dan kompetitif multipemain seperti "Co-op Raid", di mana pemain bekerja sama untuk maju melalui beberapa tahap dan mendapatkan senjata legendaris dan hadiah terkait; "Memorial Arena", di mana pemain bersaing melawan satu set bos untuk mendapatkan skor tertinggi di seluruh server; dan "Abyss", di mana pemain berusaha untuk maju sejauh mungkin melalui tantangan pertempuran untuk bersaing mendapatkan skor tinggi melawan orang lain dalam kelompok kecil. Pemain dapat bergabung dengan grup pemain lain, yang disebut "Armadas", yang memungkinkan lebih banyak peluang untuk acara dan hadiah. Armada mengizinkan permintaan material dan sumber daya secara terbatas dari pemain lain di Armada.
+                    </p>
+                </div>
+    
+                <!-- 3 -->
+                <div class="col-lg-6 reveal-l mt-5">
+                    <p>Di luar pertempuran, Honkai Impact 3rd memungkinkan pemain untuk berinteraksi dengan karakter Valkyrie dan Stigmata melalui mode "Asrama". Setelah menyelesaikan tugas khusus karakter, karakter yang berbeda mungkin dapat pindah ke asrama, di mana informasi karakter baru dan dialog antara karakter tersebut dapat dilihat. Pemain dapat membuat berbagai perabot dan mendesain tata letak kamar asrama untuk meningkatkan "kenyamanan" Valkyrie dan Stigmata di dalamnya. Tingkat kenyamanan yang lebih besar memungkinkan pemain untuk meningkatkan batas asrama mereka untuk dekorasi yang lebih rumit. Pemain dapat mengunjungi dan melihat tata letak asrama yang didekorasi satu sama lain.
+                    </p>
+                </div>
+                <div class="col-lg-6 reveal-r mt-5">
+                    <img src="./image/co-op.jpg" alt="co-op" width="100%">
+                </div>
+    
+                <!-- Bottom -->
+                <div class="row mt-5 reveal">
+                    <div class="col">
+                        <p>Mekanik gameplay sekunder mencakup berbagai minigame yang menggabungkan elemen bullet hell , platforming , dan shoot 'em up yang memungkinkan pemain mengumpulkan berbagai bahan kerajinan dan pengalaman. Acara musiman dengan waktu terbatas juga dapat mencakup gaya permainan seperti dungeon crawling dan battle royale yang biasanya tidak terlihat dalam mode permainan utama.
+                        </p>
+                        <div class="w-100 text-center mt-5 text-dark">
+                            <a href="" class="btn bgdefault1 fw-bold px-4 py-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-light" data-bs-title="Lihat halaman Gameplay Honkai lebih Detail">Lihat Gameplay Selengkapnya</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-      </div>
     </div>
     <!-- End Gameplay -->
 
-    <!-- News -->
-    <div class="container-fluid" style="background:url(https://lh3.google.com/u/0/d/15EX4-0ixUXjs3QwlD5zWfKP010OUvmh5=w1920-h902-iv1); background-size:cover">
-    <div class="container position-relative pt-5">
-        <div class="row reveal">
-            <div class="col text-center text-dark">
-                <h1 class="sesi">BERITA</h1>
+    <!-- Fitur Game -->
+    <div class="container-fluid position-relative" style="background:url(./image/bgnews.png); background-size:cover">
+        <div class="floatHeader overflow-hidden">
+            <img src="./image/object.png" alt="" class="objectSpinning" style="opacity:50%">
+        </div>
+        <div class="container position-relative pt-5">
+            <div class="row reveal">
+                <div class="col text-center text-dark">
+                    <h1 class="TitleDefault fw-semibold text-center text-white">FITUR <span class="default1">GAME</span></h1>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container reveal" id="gallery">
-        <div class="row">
-            <div class="gallery m-0 p-0">
-                <div class="gallery-container d-flex justify-content-between align-items-center">
-                    <!-- <img src="./gallery/gall1.webp" class="gallery-item gallery-item-1" data-index="1"></img>
-                    <img src="./gallery/gall2.webp" class="gallery-item gallery-item-2" data-index="2"></img>
-                    <img src="./gallery/gall3.webp" class="gallery-item gallery-item-3" data-index="3"></img>
-                    <img src="./gallery/gall4.webp" class="gallery-item gallery-item-4" data-index="4"></img>
-                    <img src="./gallery/gall5.webp" class="gallery-item gallery-item-5" data-index="5"></img> -->
-                    <img src="https://lh3.google.com/u/0/d/1sFEJVeZNRFwHAxXhWbrYu8_sfQw8P0Xi=w1227-h902-iv1" class="gallery-item gallery-item-2" data-index="1"></img>
-                    <img src="https://lh3.google.com/u/0/d/1t9zGW3JUr2BTR_arOd1nBBQpVznPHNYA=w1920-h902-iv1" class="gallery-item gallery-item-2" data-index="2"></img>
-                    <img src="https://lh3.google.com/u/0/d/1iGyCKKQkPpAnxcXvScZvgL_bb_BkBe8i=w1227-h902-iv1" class="gallery-item gallery-item-3" data-index="3"></img>
-                    <img src="https://lh3.google.com/u/0/d/17n6u8pR-JtnR-0WZkxwnnXiHaL6GUCXN=w1227-h902-iv1" class="gallery-item gallery-item-4" data-index="4"></img>
-                    <img src="https://lh3.google.com/u/0/d/1XzRmwFjOZPE7PnG3euSFYbfgN2fFemKq=w1227-h902-iv1" class="gallery-item gallery-item-5" data-index="5"></img>
-                </div>
-                <div class="gallery-controls"></div>
-            </div>                        
+        <div class="container reveal" id="gallery">
+            <div class="row mt-5">
+                <div class="gallery m-0 p-0">
+                    <div class="gallery-container d-flex justify-content-between align-items-center">
+                        <img src="./image/gallery/gall1.jpg" class="gallery-item gallery-item-1" data-index="1"></img>
+                        <img src="./image/gallery/gall2.jpg" class="gallery-item gallery-item-2" data-index="2"></img>
+                        <img src="./image/gallery/gall3.jpg" class="gallery-item gallery-item-3" data-index="3"></img>
+                        <img src="./image/gallery/gall4.jpg" class="gallery-item gallery-item-4" data-index="4"></img>
+                        <img src="./image/gallery/gall5.jpg" class="gallery-item gallery-item-5" data-index="5"></img>
+                        <!-- <img src="https://lh3.google.com/u/0/d/1sFEJVeZNRFwHAxXhWbrYu8_sfQw8P0Xi=w1227-h902-iv1" class="gallery-item gallery-item-2" data-index="1"></img>
+                        <img src="https://lh3.google.com/u/0/d/1t9zGW3JUr2BTR_arOd1nBBQpVznPHNYA=w1920-h902-iv1" class="gallery-item gallery-item-2" data-index="2"></img>
+                        <img src="https://lh3.google.com/u/0/d/1iGyCKKQkPpAnxcXvScZvgL_bb_BkBe8i=w1227-h902-iv1" class="gallery-item gallery-item-3" data-index="3"></img>
+                        <img src="https://lh3.google.com/u/0/d/17n6u8pR-JtnR-0WZkxwnnXiHaL6GUCXN=w1227-h902-iv1" class="gallery-item gallery-item-4" data-index="4"></img>
+                        <img src="https://lh3.google.com/u/0/d/1XzRmwFjOZPE7PnG3euSFYbfgN2fFemKq=w1227-h902-iv1" class="gallery-item gallery-item-5" data-index="5"></img> -->
+                    </div>
+                    <div class="gallery-controls"></div>
+                </div>                        
+            </div>
         </div>
-    </div>
         <div class="container position-relative py-5">
             <div class="col">
                 <div class="w-100 d-flex">
-                    <a class="btn btn-primary m-auto fw-semibold" href="https://honkaiimpact3.hoyoverse.com/global/en-us/news" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-dark" data-bs-title="Jelajahi Official Website Honkai Impact">Lihat Apa yang baru di Honkai Impact 3</a>
+                    <a class="btn bgdefault1 fw-bold m-auto" href="https://honkaiimpact3.hoyoverse.com/global/en-us/news" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip-dark" data-bs-title="Jelajahi Official Website Honkai Impact">Lihat Apa yang baru di Honkai Impact 3</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End News -->
+    <!-- End Fitur Game -->
 
     <!-- Footer -->
-    <!-- <footer class="bg-dark">
+    <footer class="bg-dark">
         <div class="container pt-5">
             <div class="row footer-medsos-container d-flex justify-content-center m-auto w-50">
                 <div class="col footer-medsos mt-2 d-flex justify-content-around">
@@ -626,121 +383,11 @@
                 </div>
             </div>
         </div>
-    </footer> -->
+    </footer>
     <!-- End Footer -->
 
-    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" in`tegrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script>
-
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-        window.addEventListener('scroll', reveal);
-
-        function reveal(){
-            const reveals = document.querySelectorAll('.reveal');
-            const reveals_r = document.querySelectorAll('.reveal-r');
-            const reveals_l = document.querySelectorAll('.reveal-l');
-
-            var revealpoint = 50;
-            var windowHeight = window.innerHeight;
-
-            for (var i = 0; i < reveals.length; i++){
-                var revealTop = reveals[i].getBoundingClientRect().top;
-
-                if (revealTop < windowHeight - revealpoint){
-                    reveals[i].classList.add('active');
-                } 
-                else {
-                    reveals[i].classList.remove('active');
-                }
-            }
-
-            for (var i = 0; i <  reveals_r.length; i++){
-                var revealTop_r =  reveals_r[i].getBoundingClientRect().top;
-
-                if (revealTop_r < windowHeight - revealpoint){
-                    reveals_r[i].classList.add('active');
-                } 
-                else {
-                    reveals_r[i].classList.remove('active');
-                }
-            }
-
-            for (var i = 0; i < reveals_l.length; i++){
-                var revealTop_l = reveals_l[i].getBoundingClientRect().top;
-
-                if (revealTop_l < windowHeight - revealpoint){
-                    reveals_l[i].classList.add('active');
-                } 
-                else {
-                    reveals_l[i].classList.remove('active');
-                }
-            }
-        }
-
-        const galleryContainer = document.querySelector('.gallery-container');
-        const galleryControlsContainer = document.querySelector('.gallery-controls');
-        const galleryControls = ['previous', 'next'];
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        class Carousel {
-            constructor(container, items, controls){
-                this.carouselContainer = container;
-                this.carouselControls = controls;
-                this.carouselArray = [...items];
-            }
-
-            updateGallery(){
-                this.carouselArray.forEach(el => {
-                    el.classList.remove('gallery-item-1');
-                    el.classList.remove('gallery-item-2');
-                    el.classList.remove('gallery-item-3');
-                    el.classList.remove('gallery-item-4');
-                    el.classList.remove('gallery-item-5');
-                });
-
-                this.carouselArray.slice(0,5).forEach((el, i) => {
-                    el.classList.add(`gallery-item-${i+1}`);
-                });
-            }
-
-            setCurrentState(direction){
-                if (direction.className == 'gallery-controls-previous'){
-                    this.carouselArray.unshift(this.carouselArray.pop());
-                } else {
-                    this.carouselArray.push(this.carouselArray.shift());
-                }
-                this.updateGallery();
-            }
-
-            setControls(){
-                this.carouselControls.forEach(control => {
-                    galleryControlsContainer.appendChild(document.createElement('button')).className = `gallery-controls-${control}`;
-                })
-            }
-
-            useControls(){
-                const triggers = [...galleryControlsContainer.childNodes];
-                triggers.forEach(control => {
-                    control.addEventListener('click', e => {
-                        e.preventDefault();
-                        this.setCurrentState(control);
-                    })
-                })
-            }
-        }
-
-        const exampleCarousel = new Carousel(galleryContainer, galleryItems, galleryControls);
-
-        exampleCarousel.setControls();
-        exampleCarousel.useControls();
-
-        setInterval(() => {
-            setInterval(exampleCarousel.setCurrentState('none'));    
-        }, 10000);
-    </script>
-  </body>
+    <script src="./components/script.js"></script>
+</body>
 </html>
